@@ -6,3 +6,6 @@ python-dotenv
 huggingface-hub
 transformers
 requests
+python-dotenv
+ipykernel
+together
