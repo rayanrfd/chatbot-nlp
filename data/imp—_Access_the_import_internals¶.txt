@@ -1,0 +1,82 @@
+Title: imp— Access the import internals¶
+URL: https://docs.python.org/3/library/imp.html#module-imp
+
+imghdr — Determine the type of an image
+
+mailcap — Mailcap file handling
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Removed Modules »
+
+imp — Access the import internals
+
+|
+
+Theme Auto Light Dark |
+
+Deprecated since version 3.4, removed in version 3.12.
+
+This module is no longer part of the Python standard library. It was removed in Python 3.12 after being deprecated in Python 3.4.
+
+The removal notice includes guidance for migrating code from imp to importlib .
+
+The last version of Python that provided the imp module was Python 3.11 .
+
+imghdr — Determine the type of an image
+
+mailcap — Mailcap file handling
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Removed Modules »
+
+imp — Access the import internals
+
+|
+
+Theme Auto Light Dark |

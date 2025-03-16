@@ -1,0 +1,108 @@
+Title: urllib.robotparser—  Parser for robots.txt¶
+URL: https://docs.python.org/3/library/urllib.robotparser.html#index-0
+
+urllib.error — Exception classes raised by urllib.request
+
+http — HTTP modules
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Internet Protocols and Support »
+
+urllib.robotparser —  Parser for robots.txt
+
+|
+
+Theme Auto Light Dark |
+
+Source code: Lib/urllib/robotparser.py
+
+This module provides a single class, RobotFileParser , which answers questions about whether or not a particular user agent can fetch a URL on the web site that published the robots.txt file.  For more details on the structure of robots.txt files, see http://www.robotstxt.org/orig.html .
+
+This class provides methods to read, parse and answer questions about the robots.txt file at url .
+
+Sets the URL referring to a robots.txt file.
+
+Reads the robots.txt URL and feeds it to the parser.
+
+Parses the lines argument.
+
+Returns True if the useragent is allowed to fetch the url according to the rules contained in the parsed robots.txt file.
+
+Returns the time the robots.txt file was last fetched.  This is useful for long-running web spiders that need to check for new robots.txt files periodically.
+
+Sets the time the robots.txt file was last fetched to the current time.
+
+Returns the value of the Crawl-delay parameter from robots.txt for the useragent in question.  If there is no such parameter or it doesn't apply to the useragent specified or the robots.txt entry for this parameter has invalid syntax, return None .
+
+Added in version 3.6.
+
+Returns the contents of the Request-rate parameter from robots.txt as a named tuple RequestRate(requests, seconds) . If there is no such parameter or it doesn't apply to the useragent specified or the robots.txt entry for this parameter has invalid syntax, return None .
+
+Added in version 3.6.
+
+Returns the contents of the Sitemap parameter from robots.txt in the form of a list() . If there is no such parameter or the robots.txt entry for this parameter has invalid syntax, return None .
+
+Added in version 3.8.
+
+The following example demonstrates basic use of the RobotFileParser class:
+
+>>> import urllib.robotparser >>> rp = urllib . robotparser . RobotFileParser () >>> rp . set_url ( "http://www.musi-cal.com/robots.txt" ) >>> rp . read () >>> rrate = rp . request_rate ( "*" ) >>> rrate . requests 3 >>> rrate . seconds 20 >>> rp . crawl_delay ( "*" ) 6 >>> rp . can_fetch ( "*" , "http://www.musi-cal.com/cgi-bin/search?city=San+Francisco" ) False >>> rp . can_fetch ( "*" , "http://www.musi-cal.com/" ) True
+
+urllib.error — Exception classes raised by urllib.request
+
+http — HTTP modules
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Internet Protocols and Support »
+
+urllib.robotparser —  Parser for robots.txt
+
+|
+
+Theme Auto Light Dark |

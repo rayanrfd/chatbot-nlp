@@ -1,0 +1,190 @@
+Title: wave— Read and write WAV files¶
+URL: https://docs.python.org/3/library/wave.html#wave.Wave_write.setcomptype
+
+wave — Read and write WAV files Wave_read Objects Wave_write Objects
+
+Wave_read Objects
+
+Wave_write Objects
+
+Multimedia Services
+
+colorsys — Conversions between color systems
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Multimedia Services »
+
+wave — Read and write WAV files
+
+|
+
+Theme Auto Light Dark |
+
+Source code: Lib/wave.py
+
+The wave module provides a convenient interface to the Waveform Audio "WAVE" (or "WAV") file format. Only uncompressed PCM encoded wave files are supported.
+
+Changed in version 3.12: Support for WAVE_FORMAT_EXTENSIBLE headers was added, provided that the extended format is KSDATAFORMAT_SUBTYPE_PCM .
+
+The wave module defines the following function and exception:
+
+If file is a string, open the file by that name, otherwise treat it as a file-like object. mode can be:
+
+Read only mode.
+
+Write only mode.
+
+Note that it does not allow read/write WAV files.
+
+A mode of 'rb' returns a Wave_read object, while a mode of 'wb' returns a Wave_write object.  If mode is omitted and a file-like object is passed as file , file.mode is used as the default value for mode .
+
+If you pass in a file-like object, the wave object will not close it when its close() method is called; it is the caller's responsibility to close the file object.
+
+The open() function may be used in a with statement.  When the with block completes, the Wave_read.close() or Wave_write.close() method is called.
+
+Changed in version 3.4: Added support for unseekable files.
+
+An error raised when something is impossible because it violates the WAV specification or hits an implementation deficiency.
+
+Read a WAV file.
+
+Wave_read objects, as returned by open() , have the following methods:
+
+Close the stream if it was opened by wave , and make the instance unusable.  This is called automatically on object collection.
+
+Returns number of audio channels ( 1 for mono, 2 for stereo).
+
+Returns sample width in bytes.
+
+Returns sampling frequency.
+
+Returns number of audio frames.
+
+Returns compression type ( 'NONE' is the only supported type).
+
+Human-readable version of getcomptype() . Usually 'not compressed' parallels 'NONE' .
+
+Returns a namedtuple() (nchannels, sampwidth, framerate, nframes, comptype, compname) , equivalent to output of the get*() methods.
+
+Reads and returns at most n frames of audio, as a bytes object.
+
+Rewind the file pointer to the beginning of the audio stream.
+
+The following two methods are defined for compatibility with the old aifc module, and don't do anything interesting.
+
+Returns None .
+
+Deprecated since version 3.13, will be removed in version 3.15: The method only existed for compatibility with the aifc module which has been removed in Python 3.13.
+
+Raise an error.
+
+Deprecated since version 3.13, will be removed in version 3.15: The method only existed for compatibility with the aifc module which has been removed in Python 3.13.
+
+The following two methods define a term "position" which is compatible between them, and is otherwise implementation dependent.
+
+Set the file pointer to the specified position.
+
+Return current file pointer position.
+
+Write a WAV file.
+
+Wave_write objects, as returned by open() .
+
+For seekable output streams, the wave header will automatically be updated to reflect the number of frames actually written.  For unseekable streams, the nframes value must be accurate when the first frame data is written.  An accurate nframes value can be achieved either by calling setnframes() or setparams() with the number of frames that will be written before close() is called and then using writeframesraw() to write the frame data, or by calling writeframes() with all of the frame data to be written.  In the latter case writeframes() will calculate the number of frames in the data and set nframes accordingly before writing the frame data.
+
+Changed in version 3.4: Added support for unseekable files.
+
+Wave_write objects have the following methods:
+
+Make sure nframes is correct, and close the file if it was opened by wave .  This method is called upon object collection.  It will raise an exception if the output stream is not seekable and nframes does not match the number of frames actually written.
+
+Set the number of channels.
+
+Set the sample width to n bytes.
+
+Set the frame rate to n .
+
+Changed in version 3.2: A non-integral input to this method is rounded to the nearest integer.
+
+Set the number of frames to n .  This will be changed later if the number of frames actually written is different (this update attempt will raise an error if the output stream is not seekable).
+
+Set the compression type and description. At the moment, only compression type NONE is supported, meaning no compression.
+
+The tuple should be (nchannels, sampwidth, framerate, nframes, comptype, compname) , with values valid for the set*() methods.  Sets all parameters.
+
+Return current position in the file, with the same disclaimer for the Wave_read.tell() and Wave_read.setpos() methods.
+
+Write audio frames, without correcting nframes .
+
+Changed in version 3.4: Any bytes-like object is now accepted.
+
+Write audio frames and make sure nframes is correct.  It will raise an error if the output stream is not seekable and the total number of frames that have been written after data has been written does not match the previously set value for nframes .
+
+Changed in version 3.4: Any bytes-like object is now accepted.
+
+Note that it is invalid to set any parameters after calling writeframes() or writeframesraw() , and any attempt to do so will raise wave.Error .
+
+wave — Read and write WAV files Wave_read Objects Wave_write Objects
+
+Wave_read Objects
+
+Wave_write Objects
+
+Multimedia Services
+
+colorsys — Conversions between color systems
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Multimedia Services »
+
+wave — Read and write WAV files
+
+|
+
+Theme Auto Light Dark |

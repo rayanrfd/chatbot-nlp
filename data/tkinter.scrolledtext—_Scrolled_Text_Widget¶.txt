@@ -1,0 +1,86 @@
+Title: tkinter.scrolledtext— Scrolled Text Widget¶
+URL: https://docs.python.org/3/library/tkinter.scrolledtext.html#tkinter.scrolledtext.ScrolledText.vbar
+
+tkinter.messagebox — Tkinter message prompts
+
+tkinter.dnd — Drag and drop support
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Graphical User Interfaces with Tk »
+
+tkinter.scrolledtext — Scrolled Text Widget
+
+|
+
+Theme Auto Light Dark |
+
+Source code: Lib/tkinter/scrolledtext.py
+
+The tkinter.scrolledtext module provides a class of the same name which implements a basic text widget which has a vertical scroll bar configured to do the "right thing."  Using the ScrolledText class is a lot easier than setting up a text widget and scroll bar directly.
+
+The text widget and scrollbar are packed together in a Frame , and the methods of the Grid and Pack geometry managers are acquired from the Frame object.  This allows the ScrolledText widget to be used directly to achieve most normal geometry management behavior.
+
+Should more specific control be necessary, the following attributes are available:
+
+The frame which surrounds the text and scroll bar widgets.
+
+The scroll bar widget.
+
+tkinter.messagebox — Tkinter message prompts
+
+tkinter.dnd — Drag and drop support
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Graphical User Interfaces with Tk »
+
+tkinter.scrolledtext — Scrolled Text Widget
+
+|
+
+Theme Auto Light Dark |

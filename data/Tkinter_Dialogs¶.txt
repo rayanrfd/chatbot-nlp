@@ -1,0 +1,182 @@
+Title: Tkinter Dialogs¶
+URL: https://docs.python.org/3/library/dialog.html#tkinter.filedialog.askdirectory
+
+Tkinter Dialogs tkinter.simpledialog — Standard Tkinter input dialogs tkinter.filedialog — File selection dialogs Native Load/Save Dialogs tkinter.commondialog — Dialog window templates
+
+tkinter.simpledialog — Standard Tkinter input dialogs
+
+tkinter.filedialog — File selection dialogs Native Load/Save Dialogs
+
+Native Load/Save Dialogs
+
+tkinter.commondialog — Dialog window templates
+
+tkinter.font — Tkinter font wrapper
+
+tkinter.messagebox — Tkinter message prompts
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Graphical User Interfaces with Tk »
+
+Tkinter Dialogs
+
+|
+
+Theme Auto Light Dark |
+
+Source code: Lib/tkinter/simpledialog.py
+
+The tkinter.simpledialog module contains convenience classes and functions for creating simple modal dialogs to get a value from the user.
+
+The above three functions provide dialogs that prompt the user to enter a value of the desired type.
+
+The base class for custom dialogs.
+
+Override to construct the dialog's interface and return the widget that should have initial focus.
+
+Default behaviour adds OK and Cancel buttons. Override for custom button layouts.
+
+Source code: Lib/tkinter/filedialog.py
+
+The tkinter.filedialog module provides classes and factory functions for creating file/directory selection windows.
+
+The following classes and functions provide file dialog windows that combine a native look-and-feel with configuration options to customize behaviour. The following keyword arguments are applicable to the classes and functions listed below:
+
+Static factory functions
+
+The below functions when called create a modal, native look-and-feel dialog, wait for the user's selection, then return the selected value(s) or None to the caller.
+
+The above two functions create an Open dialog and return the opened file object(s) in read-only mode.
+
+Create a SaveAs dialog and return a file object opened in write-only mode.
+
+The above two functions create an Open dialog and return the selected filename(s) that correspond to existing file(s).
+
+Create a SaveAs dialog and return the selected filename.
+
+The above two classes provide native dialog windows for saving and loading files.
+
+Convenience classes
+
+The below classes are used for creating file/directory windows from scratch. These do not emulate the native look-and-feel of the platform.
+
+Create a dialog prompting the user to select a directory.
+
+Note
+
+The FileDialog class should be subclassed for custom event handling and behaviour.
+
+Create a basic file selection dialog.
+
+Trigger the termination of the dialog window.
+
+Event handler for double-click event on directory.
+
+Event handler for click event on directory.
+
+Event handler for double-click event on file.
+
+Event handler for single-click event on file.
+
+Filter the files by directory.
+
+Retrieve the file filter currently in use.
+
+Retrieve the currently selected item.
+
+Render dialog and start event loop.
+
+Exit dialog returning current selection.
+
+Exit dialog returning filename, if any.
+
+Set the file filter.
+
+Update the current file selection to file .
+
+A subclass of FileDialog that creates a dialog window for selecting an existing file.
+
+Test that a file is provided and that the selection indicates an already existing file.
+
+A subclass of FileDialog that creates a dialog window for selecting a destination file.
+
+Test whether or not the selection points to a valid file that is not a directory. Confirmation is required if an already existing file is selected.
+
+Source code: Lib/tkinter/commondialog.py
+
+The tkinter.commondialog module provides the Dialog class that is the base class for dialogs defined in other supporting modules.
+
+Render the Dialog window.
+
+See also
+
+Modules tkinter.messagebox , Reading and Writing Files
+
+Tkinter Dialogs tkinter.simpledialog — Standard Tkinter input dialogs tkinter.filedialog — File selection dialogs Native Load/Save Dialogs tkinter.commondialog — Dialog window templates
+
+tkinter.simpledialog — Standard Tkinter input dialogs
+
+tkinter.filedialog — File selection dialogs Native Load/Save Dialogs
+
+Native Load/Save Dialogs
+
+tkinter.commondialog — Dialog window templates
+
+tkinter.font — Tkinter font wrapper
+
+tkinter.messagebox — Tkinter message prompts
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Graphical User Interfaces with Tk »
+
+Tkinter Dialogs
+
+|
+
+Theme Auto Light Dark |

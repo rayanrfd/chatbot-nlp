@@ -1,0 +1,384 @@
+Title: sys.monitoring— Execution event monitoring¶
+URL: https://docs.python.org/3/library/sys.monitoring.html#monitoring-event-INSTRUCTION
+
+sys.monitoring — Execution event monitoring Tool identifiers Registering and using tools Events Local events Ancillary events Other events The STOP_ITERATION event Turning events on and off Setting events globally Per code object events Disabling events Registering callback functions Callback function arguments
+
+Tool identifiers Registering and using tools
+
+Registering and using tools
+
+Events Local events Ancillary events Other events The STOP_ITERATION event
+
+Local events
+
+Ancillary events
+
+Other events
+
+The STOP_ITERATION event
+
+Turning events on and off Setting events globally Per code object events Disabling events
+
+Setting events globally
+
+Per code object events
+
+Disabling events
+
+Registering callback functions Callback function arguments
+
+Callback function arguments
+
+sys — System-specific parameters and functions
+
+sysconfig — Provide access to Python's configuration information
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Python Runtime Services »
+
+sys.monitoring — Execution event monitoring
+
+|
+
+Theme Auto Light Dark |
+
+Added in version 3.12.
+
+Note
+
+sys.monitoring is a namespace within the sys module, not an independent module, so there is no need to import sys.monitoring , simply import sys and then use sys.monitoring .
+
+This namespace provides access to the functions and constants necessary to activate and control event monitoring.
+
+As programs execute, events occur that might be of interest to tools that monitor execution. The sys.monitoring namespace provides means to receive callbacks when events of interest occur.
+
+The monitoring API consists of three components:
+
+Tool identifiers
+
+Tool identifiers
+
+Events
+
+Events
+
+Callbacks
+
+Callbacks
+
+A tool identifier is an integer and the associated name. Tool identifiers are used to discourage tools from interfering with each other and to allow multiple tools to operate at the same time. Currently tools are completely independent and cannot be used to monitor each other. This restriction may be lifted in the future.
+
+Before registering or activating events, a tool should choose an identifier. Identifiers are integers in the range 0 to 5 inclusive.
+
+Must be called before tool_id can be used. tool_id must be in the range 0 to 5 inclusive. Raises a ValueError if tool_id is in use.
+
+Should be called once a tool no longer requires tool_id .
+
+Note
+
+free_tool_id() will not disable global or local events associated with tool_id , nor will it unregister any callback functions. This function is only intended to be used to notify the VM that the particular tool_id is no longer in use.
+
+Returns the name of the tool if tool_id is in use, otherwise it returns None . tool_id must be in the range 0 to 5 inclusive.
+
+All IDs are treated the same by the VM with regard to events, but the following IDs are pre-defined to make co-operation of tools easier:
+
+sys . monitoring . DEBUGGER_ID = 0 sys . monitoring . COVERAGE_ID = 1 sys . monitoring . PROFILER_ID = 2 sys . monitoring . OPTIMIZER_ID = 5
+
+The following events are supported:
+
+A conditional branch is taken (or not).
+
+A call in Python code (event occurs before the call).
+
+An exception raised from any callable, except for Python functions (event occurs after the exit).
+
+Return from any callable, except for Python functions (event occurs after the return).
+
+An exception is handled.
+
+A VM instruction is about to be executed.
+
+An unconditional jump in the control flow graph is made.
+
+An instruction is about to be executed that has a different line number from the preceding instruction.
+
+Resumption of a Python function (for generator and coroutine functions), except for throw() calls.
+
+Return from a Python function (occurs immediately before the return, the callee's frame will be on the stack).
+
+Start of a Python function (occurs immediately after the call, the callee's frame will be on the stack)
+
+A Python function is resumed by a throw() call.
+
+Exit from a Python function during exception unwinding.
+
+Yield from a Python function (occurs immediately before the yield, the callee's frame will be on the stack).
+
+An exception is raised, except those that cause a STOP_ITERATION event.
+
+An exception is re-raised, for example at the end of a finally block.
+
+An artificial StopIteration is raised; see the STOP_ITERATION event .
+
+More events may be added in the future.
+
+These events are attributes of the sys.monitoring.events namespace. Each event is represented as a power-of-2 integer constant. To define a set of events, simply bitwise or the individual events together. For example, to specify both PY_RETURN and PY_START events, use the expression PY_RETURN | PY_START .
+
+An alias for 0 so users can do explicit comparisons like:
+
+if get_events ( DEBUGGER_ID ) == NO_EVENTS : ...
+
+Events are divided into three groups:
+
+Local events are associated with normal execution of the program and happen at clearly defined locations. All local events can be disabled. The local events are:
+
+PY_START
+
+PY_START
+
+PY_RESUME
+
+PY_RESUME
+
+PY_RETURN
+
+PY_RETURN
+
+PY_YIELD
+
+PY_YIELD
+
+CALL
+
+CALL
+
+LINE
+
+LINE
+
+INSTRUCTION
+
+INSTRUCTION
+
+JUMP
+
+JUMP
+
+BRANCH
+
+BRANCH
+
+STOP_ITERATION
+
+STOP_ITERATION
+
+Ancillary events can be monitored like other events, but are controlled by another event:
+
+C_RAISE
+
+C_RAISE
+
+C_RETURN
+
+C_RETURN
+
+The C_RETURN and C_RAISE events are controlled by the CALL event. C_RETURN and C_RAISE events will only be seen if the corresponding CALL event is being monitored.
+
+Other events are not necessarily tied to a specific location in the program and cannot be individually disabled.
+
+The other events that can be monitored are:
+
+PY_THROW
+
+PY_THROW
+
+PY_UNWIND
+
+PY_UNWIND
+
+RAISE
+
+RAISE
+
+EXCEPTION_HANDLED
+
+EXCEPTION_HANDLED
+
+PEP 380 specifies that a StopIteration exception is raised when returning a value from a generator or coroutine. However, this is a very inefficient way to return a value, so some Python implementations, notably CPython 3.12+, do not raise an exception unless it would be visible to other code.
+
+To allow tools to monitor for real exceptions without slowing down generators and coroutines, the STOP_ITERATION event is provided. STOP_ITERATION can be locally disabled, unlike RAISE .
+
+In order to monitor an event, it must be turned on and a corresponding callback must be registered. Events can be turned on or off by setting the events either globally or for a particular code object.
+
+Events can be controlled globally by modifying the set of events being monitored.
+
+Returns the int representing all the active events.
+
+Activates all events which are set in event_set . Raises a ValueError if tool_id is not in use.
+
+No events are active by default.
+
+Events can also be controlled on a per code object basis. The functions defined below which accept a types.CodeType should be prepared to accept a look-alike object from functions which are not defined in Python (see Monitoring C API ).
+
+Returns all the local events for code
+
+Activates all the local events for code which are set in event_set . Raises a ValueError if tool_id is not in use.
+
+Local events add to global events, but do not mask them. In other words, all global events will trigger for a code object, regardless of the local events.
+
+A special value that can be returned from a callback function to disable events for the current code location.
+
+Local events can be disabled for a specific code location by returning sys.monitoring.DISABLE from a callback function. This does not change which events are set, or any other code locations for the same event.
+
+Disabling events for specific locations is very important for high performance monitoring. For example, a program can be run under a debugger with no overhead if the debugger disables all monitoring except for a few breakpoints.
+
+Enable all the events that were disabled by sys.monitoring.DISABLE for all tools.
+
+To register a callable for events call
+
+Registers the callable func for the event with the given tool_id
+
+If another callback was registered for the given tool_id and event , it is unregistered and returned. Otherwise register_callback() returns None .
+
+Functions can be unregistered by calling sys.monitoring.register_callback(tool_id, event, None) .
+
+Callback functions can be registered and unregistered at any time.
+
+Registering or unregistering a callback function will generate a sys.audit() event.
+
+A special value that is passed to a callback function to indicate that there are no arguments to the call.
+
+When an active event occurs, the registered callback function is called. Different events will provide the callback function with different arguments, as follows:
+
+PY_START and PY_RESUME : func ( code : CodeType , instruction_offset : int ) -> DISABLE | Any
+
+PY_START and PY_RESUME :
+
+func ( code : CodeType , instruction_offset : int ) -> DISABLE | Any
+
+PY_RETURN and PY_YIELD : func ( code : CodeType , instruction_offset : int , retval : object ) -> DISABLE | Any
+
+PY_RETURN and PY_YIELD :
+
+func ( code : CodeType , instruction_offset : int , retval : object ) -> DISABLE | Any
+
+CALL , C_RAISE and C_RETURN : func ( code : CodeType , instruction_offset : int , callable : object , arg0 : object | MISSING ) -> DISABLE | Any If there are no arguments, arg0 is set to sys.monitoring.MISSING .
+
+CALL , C_RAISE and C_RETURN :
+
+func ( code : CodeType , instruction_offset : int , callable : object , arg0 : object | MISSING ) -> DISABLE | Any
+
+If there are no arguments, arg0 is set to sys.monitoring.MISSING .
+
+RAISE , RERAISE , EXCEPTION_HANDLED , PY_UNWIND , PY_THROW and STOP_ITERATION : func ( code : CodeType , instruction_offset : int , exception : BaseException ) -> DISABLE | Any
+
+RAISE , RERAISE , EXCEPTION_HANDLED , PY_UNWIND , PY_THROW and STOP_ITERATION :
+
+func ( code : CodeType , instruction_offset : int , exception : BaseException ) -> DISABLE | Any
+
+LINE : func ( code : CodeType , line_number : int ) -> DISABLE | Any
+
+LINE :
+
+func ( code : CodeType , line_number : int ) -> DISABLE | Any
+
+BRANCH and JUMP : func ( code : CodeType , instruction_offset : int , destination_offset : int ) -> DISABLE | Any Note that the destination_offset is where the code will next execute. For an untaken branch this will be the offset of the instruction following the branch.
+
+BRANCH and JUMP :
+
+func ( code : CodeType , instruction_offset : int , destination_offset : int ) -> DISABLE | Any
+
+Note that the destination_offset is where the code will next execute. For an untaken branch this will be the offset of the instruction following the branch.
+
+INSTRUCTION : func ( code : CodeType , instruction_offset : int ) -> DISABLE | Any
+
+INSTRUCTION :
+
+func ( code : CodeType , instruction_offset : int ) -> DISABLE | Any
+
+sys.monitoring — Execution event monitoring Tool identifiers Registering and using tools Events Local events Ancillary events Other events The STOP_ITERATION event Turning events on and off Setting events globally Per code object events Disabling events Registering callback functions Callback function arguments
+
+Tool identifiers Registering and using tools
+
+Registering and using tools
+
+Events Local events Ancillary events Other events The STOP_ITERATION event
+
+Local events
+
+Ancillary events
+
+Other events
+
+The STOP_ITERATION event
+
+Turning events on and off Setting events globally Per code object events Disabling events
+
+Setting events globally
+
+Per code object events
+
+Disabling events
+
+Registering callback functions Callback function arguments
+
+Callback function arguments
+
+sys — System-specific parameters and functions
+
+sysconfig — Provide access to Python's configuration information
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Python Runtime Services »
+
+sys.monitoring — Execution event monitoring
+
+|
+
+Theme Auto Light Dark |

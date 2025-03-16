@@ -1,0 +1,98 @@
+Title: linecache— Random access to text lines¶
+URL: https://docs.python.org/3/library/linecache.html#index-1
+
+fnmatch — Unix filename pattern matching
+
+shutil — High-level file operations
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+File and Directory Access »
+
+linecache — Random access to text lines
+
+|
+
+Theme Auto Light Dark |
+
+Source code: Lib/linecache.py
+
+The linecache module allows one to get any line from a Python source file, while attempting to optimize internally, using a cache, the common case where many lines are read from a single file.  This is used by the traceback module to retrieve source lines for inclusion in  the formatted traceback.
+
+The tokenize.open() function is used to open files. This function uses tokenize.detect_encoding() to get the encoding of the file; in the absence of an encoding token, the file encoding defaults to UTF-8.
+
+The linecache module defines the following functions:
+
+Get line lineno from file named filename . This function will never raise an exception — it will return '' on errors (the terminating newline character will be included for lines that are found).
+
+If a file named filename is not found, the function first checks for a PEP 302 __loader__ in module_globals . If there is such a loader and it defines a get_source method, then that determines the source lines (if get_source() returns None , then '' is returned). Finally, if filename is a relative filename, it is looked up relative to the entries in the module search path, sys.path .
+
+Clear the cache.  Use this function if you no longer need lines from files previously read using getline() .
+
+Check the cache for validity.  Use this function if files in the cache  may have changed on disk, and you require the updated version.  If filename is omitted, it will check all the entries in the cache.
+
+Capture enough detail about a non-file-based module to permit getting its lines later via getline() even if module_globals is None in the later call. This avoids doing I/O until a line is actually needed, without having to carry the module globals around indefinitely.
+
+Added in version 3.5.
+
+Example:
+
+>>> import linecache >>> linecache . getline ( linecache . __file__ , 8 ) 'import sys\n'
+
+fnmatch — Unix filename pattern matching
+
+shutil — High-level file operations
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+File and Directory Access »
+
+linecache — Random access to text lines
+
+|
+
+Theme Auto Light Dark |

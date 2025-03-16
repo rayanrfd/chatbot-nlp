@@ -1,0 +1,80 @@
+Title: ossaudiodev— Access to OSS-compatible audio devices¶
+URL: https://docs.python.org/3/library/ossaudiodev.html#module-ossaudiodev
+
+nntplib — NNTP protocol client
+
+pipes — Interface to shell pipelines
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Removed Modules »
+
+ossaudiodev — Access to OSS-compatible audio devices
+
+|
+
+Theme Auto Light Dark |
+
+Deprecated since version 3.11, removed in version 3.13.
+
+This module is no longer part of the Python standard library. It was removed in Python 3.13 after being deprecated in Python 3.11.  The removal was decided in PEP 594 .
+
+The last version of Python that provided the ossaudiodev module was Python 3.12 .
+
+nntplib — NNTP protocol client
+
+pipes — Interface to shell pipelines
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Removed Modules »
+
+ossaudiodev — Access to OSS-compatible audio devices
+
+|
+
+Theme Auto Light Dark |

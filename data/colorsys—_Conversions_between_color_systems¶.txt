@@ -1,0 +1,100 @@
+Title: colorsys— Conversions between color systems¶
+URL: https://docs.python.org/3/library/colorsys.html#colorsys.hsv_to_rgb
+
+wave — Read and write WAV files
+
+Internationalization
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Multimedia Services »
+
+colorsys — Conversions between color systems
+
+|
+
+Theme Auto Light Dark |
+
+Source code: Lib/colorsys.py
+
+The colorsys module defines bidirectional conversions of color values between colors expressed in the RGB (Red Green Blue) color space used in computer monitors and three other coordinate systems: YIQ, HLS (Hue Lightness Saturation) and HSV (Hue Saturation Value).  Coordinates in all of these color spaces are floating-point values.  In the YIQ space, the Y coordinate is between 0 and 1, but the I and Q coordinates can be positive or negative.  In all other spaces, the coordinates are all between 0 and 1.
+
+See also
+
+More information about color spaces can be found at https://poynton.ca/ColorFAQ.html and https://www.cambridgeincolour.com/tutorials/color-spaces.htm .
+
+The colorsys module defines the following functions:
+
+Convert the color from RGB coordinates to YIQ coordinates.
+
+Convert the color from YIQ coordinates to RGB coordinates.
+
+Convert the color from RGB coordinates to HLS coordinates.
+
+Convert the color from HLS coordinates to RGB coordinates.
+
+Convert the color from RGB coordinates to HSV coordinates.
+
+Convert the color from HSV coordinates to RGB coordinates.
+
+Example:
+
+>>> import colorsys >>> colorsys . rgb_to_hsv ( 0.2 , 0.4 , 0.4 ) (0.5, 0.5, 0.4) >>> colorsys . hsv_to_rgb ( 0.5 , 0.5 , 0.4 ) (0.2, 0.4, 0.4)
+
+wave — Read and write WAV files
+
+Internationalization
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Multimedia Services »
+
+colorsys — Conversions between color systems
+
+|
+
+Theme Auto Light Dark |

@@ -1,0 +1,80 @@
+Title: nntplib— NNTP protocol client¶
+URL: https://docs.python.org/3/library/nntplib.html#module-nntplib
+
+nis — Interface to Sun's NIS (Yellow Pages)
+
+ossaudiodev — Access to OSS-compatible audio devices
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Removed Modules »
+
+nntplib — NNTP protocol client
+
+|
+
+Theme Auto Light Dark |
+
+Deprecated since version 3.11, removed in version 3.13.
+
+This module is no longer part of the Python standard library. It was removed in Python 3.13 after being deprecated in Python 3.11.  The removal was decided in PEP 594 .
+
+The last version of Python that provided the nntplib module was Python 3.12 .
+
+nis — Interface to Sun's NIS (Yellow Pages)
+
+ossaudiodev — Access to OSS-compatible audio devices
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Removed Modules »
+
+nntplib — NNTP protocol client
+
+|
+
+Theme Auto Light Dark |

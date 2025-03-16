@@ -1,0 +1,238 @@
+Title: xml.sax.xmlreader— Interface for XML parsers¶
+URL: https://docs.python.org/3/library/xml.sax.reader.html#xml.sax.xmlreader.IncrementalParser.close
+
+xml.sax.xmlreader — Interface for XML parsers XMLReader Objects IncrementalParser Objects Locator Objects InputSource Objects The Attributes Interface The AttributesNS Interface
+
+XMLReader Objects
+
+IncrementalParser Objects
+
+Locator Objects
+
+InputSource Objects
+
+The Attributes Interface
+
+The AttributesNS Interface
+
+xml.sax.saxutils — SAX Utilities
+
+xml.parsers.expat — Fast XML parsing using Expat
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Structured Markup Processing Tools »
+
+xml.sax.xmlreader — Interface for XML parsers
+
+|
+
+Theme Auto Light Dark |
+
+Source code: Lib/xml/sax/xmlreader.py
+
+SAX parsers implement the XMLReader interface. They are implemented in a Python module, which must provide a function create_parser() . This function is invoked by xml.sax.make_parser() with no arguments to create a new  parser object.
+
+Base class which can be inherited by SAX parsers.
+
+In some cases, it is desirable not to parse an input source at once, but to feed chunks of the document as they get available. Note that the reader will normally not read the entire file, but read it in chunks as well; still parse() won't return until the entire document is processed. So these interfaces should be used if the blocking behaviour of parse() is not desirable.
+
+When the parser is instantiated it is ready to begin accepting data from the feed method immediately. After parsing has been finished with a call to close the reset method must be called to make the parser ready to accept new data, either from feed or using the parse method.
+
+Note that these methods must not be called during parsing, that is, after parse has been called and before it returns.
+
+By default, the class also implements the parse method of the XMLReader interface using the feed, close and reset methods of the IncrementalParser interface as a convenience to SAX 2.0 driver writers.
+
+Interface for associating a SAX event with a document location. A locator object will return valid results only during calls to DocumentHandler methods; at any other time, the results are unpredictable. If information is not available, methods may return None .
+
+Encapsulation of the information needed by the XMLReader to read entities.
+
+This class may include information about the public identifier, system identifier, byte stream (possibly with character encoding information) and/or the character stream of an entity.
+
+Applications will create objects of this class for use in the XMLReader.parse() method and for returning from EntityResolver.resolveEntity.
+
+An InputSource belongs to the application, the XMLReader is not allowed to modify InputSource objects passed to it from the application, although it may make copies and modify those.
+
+This is an implementation of the Attributes interface (see section The Attributes Interface ).  This is a dictionary-like object which represents the element attributes in a startElement() call. In addition to the most useful dictionary operations, it supports a number of other methods as described by the interface. Objects of this class should be instantiated by readers; attrs must be a dictionary-like object containing a mapping from attribute names to attribute values.
+
+Namespace-aware variant of AttributesImpl , which will be passed to startElementNS() . It is derived from AttributesImpl , but understands attribute names as two-tuples of namespaceURI and localname . In addition, it provides a number of methods expecting qualified names as they appear in the original document.  This class implements the AttributesNS interface (see section The AttributesNS Interface ).
+
+The XMLReader interface supports the following methods:
+
+Process an input source, producing SAX events. The source object can be a system identifier (a string identifying the input source – typically a file name or a URL), a pathlib.Path or path-like object, or an InputSource object. When parse() returns, the input is completely processed, and the parser object can be discarded or reset.
+
+Changed in version 3.5: Added support of character streams.
+
+Changed in version 3.8: Added support of path-like objects.
+
+Return the current ContentHandler .
+
+Set the current ContentHandler .  If no ContentHandler is set, content events will be discarded.
+
+Return the current DTDHandler .
+
+Set the current DTDHandler .  If no DTDHandler is set, DTD events will be discarded.
+
+Return the current EntityResolver .
+
+Set the current EntityResolver .  If no EntityResolver is set, attempts to resolve an external entity will result in opening the system identifier for the entity, and fail if it is not available.
+
+Return the current ErrorHandler .
+
+Set the current error handler.  If no ErrorHandler is set, errors will be raised as exceptions, and warnings will be printed.
+
+Allow an application to set the locale for errors and warnings.
+
+SAX parsers are not required to provide localization for errors and warnings; if they cannot support the requested locale, however, they must raise a SAX exception.  Applications may request a locale change in the middle of a parse.
+
+Return the current setting for feature featurename .  If the feature is not recognized, SAXNotRecognizedException is raised. The well-known featurenames are listed in the module xml.sax.handler .
+
+Set the featurename to value . If the feature is not recognized, SAXNotRecognizedException is raised. If the feature or its setting is not supported by the parser, SAXNotSupportedException is raised.
+
+Return the current setting for property propertyname . If the property is not recognized, a SAXNotRecognizedException is raised. The well-known propertynames are listed in the module xml.sax.handler .
+
+Set the propertyname to value . If the property is not recognized, SAXNotRecognizedException is raised. If the property or its setting is not supported by the parser, SAXNotSupportedException is raised.
+
+Instances of IncrementalParser offer the following additional methods:
+
+Process a chunk of data .
+
+Assume the end of the document. That will check well-formedness conditions that can be checked only at the end, invoke handlers, and may clean up resources allocated during parsing.
+
+This method is called after close has been called to reset the parser so that it is ready to parse new documents. The results of calling parse or feed after close without calling reset are undefined.
+
+Instances of Locator provide these methods:
+
+Return the column number where the current event begins.
+
+Return the line number where the current event begins.
+
+Return the public identifier for the current event.
+
+Return the system identifier for the current event.
+
+Sets the public identifier of this InputSource .
+
+Returns the public identifier of this InputSource .
+
+Sets the system identifier of this InputSource .
+
+Returns the system identifier of this InputSource .
+
+Sets the character encoding of this InputSource .
+
+The encoding must be a string acceptable for an XML encoding declaration (see section 4.3.3 of the XML recommendation).
+
+The encoding attribute of the InputSource is ignored if the InputSource also contains a character stream.
+
+Get the character encoding of this InputSource.
+
+Set the byte stream (a binary file ) for this input source.
+
+The SAX parser will ignore this if there is also a character stream specified, but it will use a byte stream in preference to opening a URI connection itself.
+
+If the application knows the character encoding of the byte stream, it should set it with the setEncoding method.
+
+Get the byte stream for this input source.
+
+The getEncoding method will return the character encoding for this byte stream, or None if unknown.
+
+Set the character stream (a text file ) for this input source.
+
+If there is a character stream specified, the SAX parser will ignore any byte stream and will not attempt to open a URI connection to the system identifier.
+
+Get the character stream for this input source.
+
+Attributes objects implement a portion of the mapping protocol , including the methods copy() , get() , __contains__() , items() , keys() , and values() .  The following methods are also provided:
+
+Return the number of attributes.
+
+Return the names of the attributes.
+
+Returns the type of the attribute name , which is normally 'CDATA' .
+
+Return the value of attribute name .
+
+This interface is a subtype of the Attributes interface (see section The Attributes Interface ).  All methods supported by that interface are also available on AttributesNS objects.
+
+The following methods are also available:
+
+Return the value for a qualified name.
+
+Return the (namespace, localname) pair for a qualified name .
+
+Return the qualified name for a (namespace, localname) pair.
+
+Return the qualified names of all attributes.
+
+xml.sax.xmlreader — Interface for XML parsers XMLReader Objects IncrementalParser Objects Locator Objects InputSource Objects The Attributes Interface The AttributesNS Interface
+
+XMLReader Objects
+
+IncrementalParser Objects
+
+Locator Objects
+
+InputSource Objects
+
+The Attributes Interface
+
+The AttributesNS Interface
+
+xml.sax.saxutils — SAX Utilities
+
+xml.parsers.expat — Fast XML parsing using Expat
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Structured Markup Processing Tools »
+
+xml.sax.xmlreader — Interface for XML parsers
+
+|
+
+Theme Auto Light Dark |

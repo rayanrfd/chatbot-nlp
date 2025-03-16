@@ -1,0 +1,82 @@
+Title: asyncore— Asynchronous socket handler¶
+URL: https://docs.python.org/3/library/asyncore.html#index-0
+
+asynchat — Asynchronous socket command/response handler
+
+audioop — Manipulate raw audio data
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Removed Modules »
+
+asyncore — Asynchronous socket handler
+
+|
+
+Theme Auto Light Dark |
+
+Deprecated since version 3.6, removed in version 3.12.
+
+This module is no longer part of the Python standard library. It was removed in Python 3.12 after being deprecated in Python 3.6.  The removal was decided in PEP 594 .
+
+Applications should use the asyncio module instead.
+
+The last version of Python that provided the asyncore module was Python 3.11 .
+
+asynchat — Asynchronous socket command/response handler
+
+audioop — Manipulate raw audio data
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Removed Modules »
+
+asyncore — Asynchronous socket handler
+
+|
+
+Theme Auto Light Dark |

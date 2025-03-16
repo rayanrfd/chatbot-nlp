@@ -1,0 +1,86 @@
+Title: xmlrpc— XMLRPC server and client modules¶
+URL: https://docs.python.org/3/library/xmlrpc.html#module-xmlrpc
+
+http.cookiejar — Cookie handling for HTTP clients
+
+xmlrpc.client — XML-RPC client access
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Internet Protocols and Support »
+
+xmlrpc — XMLRPC server and client modules
+
+|
+
+Theme Auto Light Dark |
+
+XML-RPC is a Remote Procedure Call method that uses XML passed via HTTP as a transport.  With it, a client can call methods with parameters on a remote server (the server is named by a URI) and get back structured data.
+
+xmlrpc is a package that collects server and client modules implementing XML-RPC.  The modules are:
+
+xmlrpc.client
+
+xmlrpc.client
+
+xmlrpc.server
+
+xmlrpc.server
+
+http.cookiejar — Cookie handling for HTTP clients
+
+xmlrpc.client — XML-RPC client access
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Internet Protocols and Support »
+
+xmlrpc — XMLRPC server and client modules
+
+|
+
+Theme Auto Light Dark |

@@ -1,0 +1,438 @@
+Title: errno— Standard errno system symbols¶
+URL: https://docs.python.org/3/library/errno.html#errno.ENODATA
+
+platform —  Access to underlying platform's identifying data
+
+ctypes — A foreign function library for Python
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Generic Operating System Services »
+
+errno — Standard errno system symbols
+
+|
+
+Theme Auto Light Dark |
+
+This module makes available standard errno system symbols. The value of each symbol is the corresponding integer value. The names and descriptions are borrowed from linux/include/errno.h , which should be all-inclusive.
+
+Dictionary providing a mapping from the errno value to the string name in the underlying system.  For instance, errno.errorcode[errno.EPERM] maps to 'EPERM' .
+
+To translate a numeric error code to an error message, use os.strerror() .
+
+Of the following list, symbols that are not used on the current platform are not defined by the module.  The specific list of defined symbols is available as errno.errorcode.keys() .  Symbols available can include:
+
+Operation not permitted. This error is mapped to the exception PermissionError .
+
+No such file or directory. This error is mapped to the exception FileNotFoundError .
+
+No such process. This error is mapped to the exception ProcessLookupError .
+
+Interrupted system call. This error is mapped to the exception InterruptedError .
+
+I/O error
+
+No such device or address
+
+Arg list too long
+
+Exec format error
+
+Bad file number
+
+No child processes. This error is mapped to the exception ChildProcessError .
+
+Try again. This error is mapped to the exception BlockingIOError .
+
+Out of memory
+
+Permission denied.  This error is mapped to the exception PermissionError .
+
+Bad address
+
+Block device required
+
+Device or resource busy
+
+File exists. This error is mapped to the exception FileExistsError .
+
+Cross-device link
+
+No such device
+
+Not a directory. This error is mapped to the exception NotADirectoryError .
+
+Is a directory. This error is mapped to the exception IsADirectoryError .
+
+Invalid argument
+
+File table overflow
+
+Too many open files
+
+Not a typewriter
+
+Text file busy
+
+File too large
+
+No space left on device
+
+Illegal seek
+
+Read-only file system
+
+Too many links
+
+Broken pipe. This error is mapped to the exception BrokenPipeError .
+
+Math argument out of domain of func
+
+Math result not representable
+
+Resource deadlock would occur
+
+File name too long
+
+No record locks available
+
+Function not implemented
+
+Directory not empty
+
+Too many symbolic links encountered
+
+Operation would block. This error is mapped to the exception BlockingIOError .
+
+No message of desired type
+
+Identifier removed
+
+Channel number out of range
+
+Level 2 not synchronized
+
+Level 3 halted
+
+Level 3 reset
+
+Link number out of range
+
+Protocol driver not attached
+
+No CSI structure available
+
+Level 2 halted
+
+Invalid exchange
+
+Invalid request descriptor
+
+Exchange full
+
+No anode
+
+Invalid request code
+
+Invalid slot
+
+File locking deadlock error
+
+Bad font file format
+
+Device not a stream
+
+No data available
+
+Timer expired
+
+Out of streams resources
+
+Machine is not on the network
+
+Package not installed
+
+Object is remote
+
+Link has been severed
+
+Advertise error
+
+Srmount error
+
+Communication error on send
+
+Protocol error
+
+Multihop attempted
+
+RFS specific error
+
+Not a data message
+
+Value too large for defined data type
+
+Name not unique on network
+
+File descriptor in bad state
+
+Remote address changed
+
+Can not access a needed shared library
+
+Accessing a corrupted shared library
+
+.lib section in a.out corrupted
+
+Attempting to link in too many shared libraries
+
+Cannot exec a shared library directly
+
+Illegal byte sequence
+
+Interrupted system call should be restarted
+
+Streams pipe error
+
+Too many users
+
+Socket operation on non-socket
+
+Destination address required
+
+Message too long
+
+Protocol wrong type for socket
+
+Protocol not available
+
+Protocol not supported
+
+Socket type not supported
+
+Operation not supported on transport endpoint
+
+Operation not supported
+
+Added in version 3.2.
+
+Protocol family not supported
+
+Address family not supported by protocol
+
+Address already in use
+
+Cannot assign requested address
+
+Network is down
+
+Network is unreachable
+
+Network dropped connection because of reset
+
+Software caused connection abort. This error is mapped to the exception ConnectionAbortedError .
+
+Connection reset by peer. This error is mapped to the exception ConnectionResetError .
+
+No buffer space available
+
+Transport endpoint is already connected
+
+Transport endpoint is not connected
+
+Cannot send after transport endpoint shutdown. This error is mapped to the exception BrokenPipeError .
+
+Too many references: cannot splice
+
+Connection timed out. This error is mapped to the exception TimeoutError .
+
+Connection refused. This error is mapped to the exception ConnectionRefusedError .
+
+Host is down
+
+No route to host
+
+Operation already in progress. This error is mapped to the exception BlockingIOError .
+
+Operation now in progress. This error is mapped to the exception BlockingIOError .
+
+Stale NFS file handle
+
+Structure needs cleaning
+
+Not a XENIX named type file
+
+No XENIX semaphores available
+
+Is a named type file
+
+Remote I/O error
+
+Quota exceeded
+
+Interface output queue is full
+
+Added in version 3.11.
+
+No medium found
+
+Wrong medium type
+
+Required key not available
+
+Key has expired
+
+Key has been revoked
+
+Key was rejected by service
+
+Operation not possible due to RF-kill
+
+Locked lock was unmapped
+
+Facility is not active
+
+Authentication error
+
+Added in version 3.2.
+
+Bad CPU type in executable
+
+Added in version 3.2.
+
+Bad executable (or shared library)
+
+Added in version 3.2.
+
+Malformed Mach-o file
+
+Added in version 3.2.
+
+Device error
+
+Added in version 3.2.
+
+Inappropriate file type or format
+
+Added in version 3.2.
+
+Need authenticator
+
+Added in version 3.2.
+
+Attribute not found
+
+Added in version 3.2.
+
+Policy not found
+
+Added in version 3.2.
+
+Too many processes
+
+Added in version 3.2.
+
+Bad procedure for program
+
+Added in version 3.2.
+
+Program version wrong
+
+Added in version 3.2.
+
+RPC prog. not avail
+
+Added in version 3.2.
+
+Device power is off
+
+Added in version 3.2.
+
+RPC struct is bad
+
+Added in version 3.2.
+
+RPC version wrong
+
+Added in version 3.2.
+
+Shared library version mismatch
+
+Added in version 3.2.
+
+Capabilities insufficient. This error is mapped to the exception PermissionError .
+
+Availability : WASI, FreeBSD
+
+Added in version 3.11.1.
+
+Operation canceled
+
+Added in version 3.2.
+
+Owner died
+
+Added in version 3.2.
+
+State not recoverable
+
+Added in version 3.2.
+
+platform —  Access to underlying platform's identifying data
+
+ctypes — A foreign function library for Python
+
+Report a Bug
+
+Show Source
+
+index
+
+modules |
+
+next |
+
+previous |
+
+
+
+Python »
+
+
+
+
+
+3.13.2 Documentation »
+
+The Python Standard Library »
+
+Generic Operating System Services »
+
+errno — Standard errno system symbols
+
+|
+
+Theme Auto Light Dark |
