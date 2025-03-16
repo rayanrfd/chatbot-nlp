@@ -9,3 +9,8 @@ requests
 python-dotenv
 ipykernel
 together
+bs4
+langchain-text-splitters
+langchain-community
+unstructured
+libmagic
