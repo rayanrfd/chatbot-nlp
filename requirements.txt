@@ -14,3 +14,12 @@ langchain-text-splitters
 langchain-community
 unstructured
 libmagic
+ftfy
+numpy
+tiktoken
+sentence_transformers
+torch
+tqdm
+ollama
+faiss-cpu
+
