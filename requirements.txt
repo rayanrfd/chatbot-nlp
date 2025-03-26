@@ -22,5 +22,7 @@ torch
 tqdm
 ollama
 faiss-cpu
-"langchain[together]" 
 langchain-huggingface
+ollama
+streamlit
+langchain_ollama
